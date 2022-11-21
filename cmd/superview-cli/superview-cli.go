@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/Niek/superview/common"
 	"log"
 	"os"
-	"superview/common"
 
 	"github.com/jessevdk/go-flags"
 )

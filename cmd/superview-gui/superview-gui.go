@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/storage"
+	"fyne.io/fyne/v2/theme"
+	"fyne.io/fyne/v2/widget"
+	"github.com/Niek/superview/common"
 	"log"
 	"strconv"
 	"strings"
-	"superview/common"
-
-	"fyne.io/fyne"
-	"fyne.io/fyne/app"
-	"fyne.io/fyne/dialog"
-	"fyne.io/fyne/layout"
-	"fyne.io/fyne/storage"
-	"fyne.io/fyne/theme"
-	"fyne.io/fyne/widget"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 	title.TextStyle = fyne.TextStyle{Bold: true}
 
 	info := widget.NewMultiLineEntry()
-	info.SetReadOnly(true)
+	//info.SetReadOnly(true)
 	//info.Disable()
 	info.SetPlaceHolder("Info box...")
 
@@ -142,8 +142,7 @@ func main() {
 	})
 	encoder.SetSelected(encoderOptions[0])
 
-	window.SetContent(widget.NewVBox(
-		title,
+	withoutLayout := container.NewVBox(title,
 		info,
 		layout.NewSpacer(),
 		open,
@@ -153,8 +152,9 @@ func main() {
 		start,
 		widget.NewButton("Quit", func() {
 			app.Quit()
-		}),
-	))
+		}))
+
+	window.SetContent(withoutLayout)
 
 	window.Resize(fyne.NewSize(640, 330))
 
